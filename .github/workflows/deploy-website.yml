@@ -19,8 +19,11 @@ jobs:
       - name: Install dependencies
         run: cd apps/web && npm install
 
+      - name: List available scripts
+        run: cd apps/web && npm run
+
       - name: Build project
-        run: cd apps/web && npm run build:static
+        run: cd apps/web && npm run build
 
       - name: List build output
         run: cd apps/web && ls -la build/client/
