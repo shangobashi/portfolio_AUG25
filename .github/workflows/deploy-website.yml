@@ -25,6 +25,11 @@ jobs:
       - name: Build project
         run: cd apps/web && npm run build
 
+      - name: Fix index.html paths
+        run: |
+          cd apps/web/build/client
+          sed -i 's|/assets/|./assets/|g' index.html
+
       - name: List build output
         run: cd apps/web && ls -la build/client/
 
