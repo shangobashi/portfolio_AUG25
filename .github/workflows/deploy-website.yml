@@ -20,7 +20,7 @@ jobs:
         run: cd apps/web && npm install
 
       - name: Build project
-        run: cd apps/web && npm run build
+        run: cd apps/web && npm run build:static
 
       - name: List build output
         run: cd apps/web && ls -la build/client/
