@@ -23,7 +23,7 @@ jobs:
         run: cd apps/web && npm run
 
       - name: Build project
-        run: cd apps/web && npm run build
+        run: cd apps/web && npm run build:static
 
       - name: Fix index.html paths
         run: |
