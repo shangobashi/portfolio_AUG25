@@ -25,13 +25,20 @@ jobs:
       - name: Build project
         run: cd apps/web && npm run build:static
 
+      - name: List build output
+        run: cd apps/web && ls -la build/
+
+      - name: List client directory
+        run: cd apps/web && ls -la build/client/ || echo "Client directory not found"
+
       - name: Fix index.html paths
         run: |
-          cd apps/web/build/client
-          sed -i 's|/assets/|./assets/|g' index.html
-
-      - name: List build output
-        run: cd apps/web && ls -la build/client/
+          if [ -f "apps/web/build/client/index.html" ]; then
+            cd apps/web/build/client
+            sed -i 's|/assets/|./assets/|g' index.html
+          else
+            echo "index.html not found in build/client directory"
+          fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
